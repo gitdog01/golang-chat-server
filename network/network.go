@@ -26,6 +26,11 @@ func NewServer() *Network {
 		AllowCredentials: true,
 	})) // Enable CORS
 
+	r := NewRoom()
+	go r.RunInit()
+
+	n.engine.GET("/room", r.SocketServer)
+
 	return n
 }
 
