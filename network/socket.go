@@ -2,6 +2,7 @@ package network
 
 import (
 	"golang-chat-server/types"
+	"log"
 	"net/http"
 	"time"
 
@@ -125,4 +126,12 @@ func (r *Room) SocketServer(c *gin.Context) {
 	go Client.Write()
 
 	Client.Read()
+}
+
+func (r *Room) getRooms() {
+	for client := range r.Clients {
+		log.Println(client.Name)
+
+	}
+
 }
